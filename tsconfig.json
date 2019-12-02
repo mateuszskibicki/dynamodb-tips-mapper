@@ -24,9 +24,7 @@
   },
   "include": ["./**/*.ts"],
   "baseUrl": "./",
-  "paths": {
-    "@app/*": ["./src"]
-  },
+
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",

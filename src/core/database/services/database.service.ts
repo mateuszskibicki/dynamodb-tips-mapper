@@ -1,5 +1,5 @@
+import { dynamoDb } from "../";
 import { DataMapper } from "@aws/dynamodb-data-mapper";
-import { dynamoDb } from "@app/core";
 
 let client: DataMapper;
 

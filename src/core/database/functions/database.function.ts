@@ -1,5 +1,5 @@
+import { DatabaseEnum } from "../enum";
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
-import { DatabaseEnum } from "@app/core";
 
 let client: DynamoDB;
 

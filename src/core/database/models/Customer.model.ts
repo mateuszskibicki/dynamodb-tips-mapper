@@ -4,10 +4,10 @@ import {
   rangeKey,
   table
 } from "@aws/dynamodb-data-mapper-annotations";
-import { CustomerType, DatabaseEnum } from "@app/core";
-
+import { DatabaseEnum } from "../";
+import { BaseModel } from "./BaseModel.model";
 @table(DatabaseEnum.Table)
-export class Customer {
+export class Customer extends BaseModel<Customer> {
   /**
    * @var {string}
    */
@@ -19,7 +19,7 @@ export class Customer {
    */
   @rangeKey()
   @attribute()
-  public readonly type: CustomerType;
+  public readonly type: string;
 
   /**
    * @var {string}
@@ -36,7 +36,7 @@ export class Customer {
   /**
    * @var {Date}
    */
-  @attribute()
+  @attribute({ defaultProvider: () => new Date() })
   public createdAt: Date;
 
   /**
