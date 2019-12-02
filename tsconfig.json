@@ -1,20 +1,32 @@
 {
   "compilerOptions": {
-    "lib": [
-      "es2017"
-    ],
-    "removeComments": true,
+    "module": "commonjs",
+    "target": "es2015",
+    "lib": ["es2015", "es2018"],
     "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": ["./src/*"]
+    },
     "sourceMap": true,
+    "allowJs": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "noImplicitReturns": true,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "target": "es2017",
+    "emitDecoratorMetadata": true,
     "outDir": "lib"
   },
-  "include": [
-    "./**/*.ts"
-  ],
+  "include": ["./**/*.ts"],
+  "baseUrl": "./",
+  "paths": {
+    "@app/*": ["./src"]
+  },
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",
