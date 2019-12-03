@@ -5,43 +5,24 @@ import {
   table
 } from "@aws/dynamodb-data-mapper-annotations";
 import { DatabaseEnum } from "../";
-import { BaseModel } from "./BaseModel.model";
+
 @table(DatabaseEnum.Table)
-export class Customer extends BaseModel<Customer> {
-  /**
-   * @var {string}
-   */
+export class Customer {
   @hashKey()
-  public id: string;
+  id: string;
 
-  /**
-   * @var {CustomerType}
-   */
-  @rangeKey()
+  @rangeKey({ defaultProvider: () => new Date() })
+  createdAt: Date;
+
   @attribute()
-  public readonly type: string;
+  isPremium?: boolean;
 
-  /**
-   * @var {string}
-   */
   @attribute()
-  public firstName?: string;
+  ifVip?: boolean;
 
-  /**
-   * @var {string}
-   */
   @attribute()
-  public lastName?: string;
+  firstName?: string;
 
-  /**
-   * @var {Date}
-   */
-  @attribute({ defaultProvider: () => new Date() })
-  public createdAt: Date;
-
-  /**
-   * @var {Date}
-   */
   @attribute()
-  public updatedAt?: Date;
+  lastName?: string;
 }

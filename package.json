@@ -4,7 +4,7 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "dev": "sls offline start --skipCacheInvalidation"
+    "dev": "AWS_PROFILE=mateusz-private sls offline start --skipCacheInvalidation"
   },
   "dependencies": {
     "@aws/dynamodb-data-mapper-annotations": "^0.7.3",
