@@ -1,17 +1,45 @@
-import { Lambda } from "./interfaces/lambda.interface";
+import { Lambda, LambdaConfig, LambdaResponse } from "./interfaces";
 import { Customer } from "../core/database/models/Customer.model";
 import { database } from "../core/database/services/database.service";
+import { lambda, response } from "./functions";
 
-export const createCustomerLambda: Lambda = async (event, context) => {
-  context.callbackWaitsForEmptyEventLoop = false;
+/**
+ * Config for this endpoint
+ */
+const config: LambdaConfig = { name: "Create Customer" };
 
-  const toSave = Object.assign(new Customer(), { id: "foo" });
-  const savedObject = await database().put(toSave);
+/**
+ * Endpoint that creates new customer
+ * If there is success, update password and return 200
+ * if there is an error throws Error
+ * @param {APIGatewayEvent} event
+ * @param {Context} Context
+ * @return {LambdaResponse}
+ * @throws {Error}
+ */
 
-  console.log(savedObject);
+export const createCustomerLambda: Lambda = lambda(
+  config,
+  async (event, context) => {
+    context.callbackWaitsForEmptyEventLoop = false;
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ savedObject })
-  };
-};
+    const toSave = Object.assign(new Customer(), { id: "foo" });
+    const savedObject = await database().put(toSave);
+
+    console.log(savedObject);
+
+    // Return new tokens, status 201, add optional headers for oauth2
+    return response(
+      {
+        savedObject
+      },
+      200,
+      {
+        headers: {
+          "Cache-Control": "no-store",
+          Pragma: "no-cache"
+        }
+      }
+    ) as LambdaResponse;
+  }
+);

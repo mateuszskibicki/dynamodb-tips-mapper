@@ -1,3 +1,4 @@
+import { ResponseHeaders } from "../types/response-headers.type";
 /**
  * Interface represents a response
  */
@@ -19,5 +20,5 @@ export interface LambdaResponse {
    * Optional headers object
    * @var {object}
    */
-  headers?: { [headerName: string]: string };
+  headers?: ResponseHeaders;
 }

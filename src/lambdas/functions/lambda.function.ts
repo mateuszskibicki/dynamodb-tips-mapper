@@ -1,10 +1,13 @@
 // import { StructError } from 'superstruct';
-import { APIGatewayEvent, APIGatewayProxyResult } from "aws-lambda";
-// import * as Sentry from '@sentry/node';
+import {
+  APIGatewayEvent,
+  APIGatewayProxyResult,
+  Context,
+  Callback
+} from "aws-lambda";
 // import { LambdaResponse, AccountAlreadyExists, UnauthenticatedClientError, UnauthenticatedUserError, UnsupportedGrantTypeError, response } from '@app/common';
 import { LambdaConfig, Lambda } from "../interfaces";
 import { response } from "./";
-// import { authenticateClient } from './authenticate-client.function';
 
 /**
  * Default values to use as lambda config
@@ -17,20 +20,20 @@ const defaultLambdaConfig: Readonly<Partial<LambdaConfig>> = Object.freeze({
 /**
  * Wraps lambda endpoints in common functionality.
  * @param {LambdaConfig} config
- * @param {Lambda} fn
+ * @param {Lambda} lambdaFunction
  * @return {Lambda}
  */
 export function lambda(config: LambdaConfig, lambdaFunction: Lambda): Lambda {
   // Combine given config with defaults
   const _config: LambdaConfig = { ...defaultLambdaConfig, ...config };
 
-  return async (event?: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
+  return async (event, context, callback): Promise<APIGatewayProxyResult> => {
     try {
-      const payload: any = JSON.parse(event.body);
+      //   const payload: any = JSON.parse(event.body);
 
       // if (_config.requireClientAuthentication) authenticateClient(payload.client_id, payload.client_secret);
 
-      return await lambdaFunction(event);
+      return await lambdaFunction(event, context, callback);
     } catch (err) {
       switch (err.constructor) {
         // case AccountAlreadyExists:

@@ -1,3 +1,7 @@
+/**
+ * Interface represents an response config object
+ */
+
 export interface LambdaConfig {
   /**
    * Name of the lambda function
