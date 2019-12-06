@@ -1,13 +1,7 @@
 // import { StructError } from 'superstruct';
-import {
-  APIGatewayEvent,
-  APIGatewayProxyResult,
-  Context,
-  Callback
-} from "aws-lambda";
-// import { LambdaResponse, AccountAlreadyExists, UnauthenticatedClientError, UnauthenticatedUserError, UnsupportedGrantTypeError, response } from '@app/common';
+import { APIGatewayProxyResult } from "aws-lambda";
 import { LambdaConfig, Lambda } from "../interfaces";
-import { response } from "./";
+import { response } from "../";
 
 /**
  * Default values to use as lambda config
@@ -28,6 +22,9 @@ export function lambda(config: LambdaConfig, lambdaFunction: Lambda): Lambda {
   const _config: LambdaConfig = { ...defaultLambdaConfig, ...config };
 
   return async (event, context, callback): Promise<APIGatewayProxyResult> => {
+    // Context changes
+    context.callbackWaitsForEmptyEventLoop = false;
+
     try {
       //   const payload: any = JSON.parse(event.body);
 

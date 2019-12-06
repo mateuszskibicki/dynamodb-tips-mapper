@@ -12,7 +12,7 @@ export class Customer {
   id: string;
 
   @rangeKey({ defaultProvider: () => new Date() })
-  createdAt: Date;
+  createdAt?: Date;
 
   @attribute()
   isPremium?: boolean;
