@@ -4,7 +4,6 @@ import {
   rangeKey,
   table
 } from "@aws/dynamodb-data-mapper-annotations";
-import uuidV4 = require("uuid/v4");
 import { DatabaseEnum } from "../";
 
 @table(DatabaseEnum.Table)
