@@ -1,15 +1,14 @@
 import { Customer, database } from "../../core";
 
 /**
- * Function to create new customer
+ * Function to create new account
  * @param {any} payload
  * @return {Promise<Customer>}
  * @throws {Error}
  */
-export const createCustomer = async (payload: any): Promise<Customer> => {
-  // Create new customer object
-  const newCustomer: Customer = {
-    id: "boo",
+export const createAccount = async (payload: any): Promise<Customer> => {
+  // Create new account object
+  const newCustomer: Partial<Customer> = {
     firstName: payload.firstName,
     lastName: payload.lastName
   };

@@ -7,7 +7,7 @@ import {
   Customer
 } from "../core";
 
-import { createCustomer } from "./";
+import { createAccount } from "./";
 
 /**
  * Config for this endpoint
@@ -24,10 +24,10 @@ const config: LambdaConfig = { name: "Create Customer" };
  * @throws {Error}
  */
 
-export const createCustomerLambda: Lambda = lambda(config, async event => {
+export const createAccountLambda: Lambda = lambda(config, async event => {
   const payload: any = event.body ? JSON.parse(event.body) : {};
 
-  const customer: Customer = await createCustomer(payload);
+  const customer: Customer = await createAccount(payload);
 
   // Return new tokens, status 201, add optional headers for oauth2
   return response(

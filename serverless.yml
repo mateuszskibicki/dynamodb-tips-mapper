@@ -31,7 +31,7 @@ provider:
 
 functions:
   create-customer:
-    handler: index.createCustomerLambda
+    handler: index.createAccountLambda
     events:
       - http:
           method: post

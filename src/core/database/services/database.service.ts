@@ -17,13 +17,3 @@ export function database() {
 
   return client;
 }
-
-// /**
-//  * @return {DynamoDb}
-//  */
-// export function dynamoDb(): DynamoDB {
-//   if (!client) {
-//     client = new DynamoDB({ region: DatabaseEnum.Region });
-//   }
-//   return client;
-// }
