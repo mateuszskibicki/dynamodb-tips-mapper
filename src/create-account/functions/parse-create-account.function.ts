@@ -21,9 +21,7 @@ export function parseCreateAccountPayload(payload: any): CreateAccountPayload {
   validate(payload);
 
   return {
-    clientId: payload.client_id,
-    clientSecret: payload.client_secret || null,
-    resetToken: payload.reset_token,
-    password: payload.password
+    firstName: payload.firstName,
+    lastName: payload.lastName
   };
 }

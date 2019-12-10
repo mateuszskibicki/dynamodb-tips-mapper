@@ -13,5 +13,5 @@ export interface CreateAccountPayload {
   /**
    * @var {string}
    */
-  lasyName: string;
+  lastName: string;
 }

@@ -1,4 +1,5 @@
 import { Customer, database } from "../../core";
+import { parseCreateAccountPayload } from "./parse-create-account.function";
 
 /**
  * Function to create new account
@@ -8,10 +9,7 @@ import { Customer, database } from "../../core";
  */
 export const createAccount = async (payload: any): Promise<Customer> => {
   // Create new account object
-  const newCustomer: Partial<Customer> = {
-    firstName: payload.firstName,
-    lastName: payload.lastName
-  };
+  const newCustomer: Partial<Customer> = parseCreateAccountPayload(payload);
 
   // Create customer object ready to save
   const toSave: Customer = Object.assign(new Customer(), newCustomer);

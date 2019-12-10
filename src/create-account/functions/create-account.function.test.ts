@@ -8,7 +8,7 @@ import { database } from "../../core";
 |--------------------------------------------------
 */
 
-describe("create-account", () => {
+describe("createAccount", () => {
   const payload: Partial<Customer> = {
     firstName: "firstNamne",
     lastName: "lastName"
@@ -19,6 +19,18 @@ describe("create-account", () => {
   it("should be defined and a function", () => {
     expect(createAccount).toBeDefined();
     expect(typeof createAccount === "function").toBeTruthy();
+  });
+
+  it("calles parse funtion with correct payload", async () => {
+    jest.spyOn(database(), "put").mockImplementation(async item => item);
+    const spy = jest.spyOn(
+      require("./parse-create-account.function"),
+      "parseCreateAccountPayload"
+    );
+
+    await createAccount(payload);
+
+    expect(spy).toHaveBeenCalledWith(payload);
   });
 
   it("should return ready value", async () => {
