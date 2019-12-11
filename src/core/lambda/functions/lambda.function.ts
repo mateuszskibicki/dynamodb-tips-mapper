@@ -21,9 +21,12 @@ export function lambda(config: LambdaConfig, lambdaFunction: Lambda): Lambda {
   // Combine given config with defaults
   const _config: LambdaConfig = { ...defaultLambdaConfig, ...config };
 
-  return async (event, context, callback): Promise<APIGatewayProxyResult> => {
+  return async (
+    event?,
+    context?,
+    callback?
+  ): Promise<APIGatewayProxyResult> => {
     // Context changes
-    context.callbackWaitsForEmptyEventLoop = false;
 
     try {
       //   const payload: any = JSON.parse(event.body);
@@ -89,7 +92,7 @@ export function lambda(config: LambdaConfig, lambdaFunction: Lambda): Lambda {
            * console.error(err);
            */
 
-          console.error(err);
+          // console.error(err);
 
           return response({}, 500);
       }

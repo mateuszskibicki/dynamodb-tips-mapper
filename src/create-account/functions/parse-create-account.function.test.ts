@@ -1,5 +1,5 @@
 import { StructError } from "superstruct";
-import { Customer } from "./../../core/database/models/Customer.model";
+import { Customer } from "../../core";
 import { parseCreateAccountPayload } from "./parse-create-account.function";
 
 /**

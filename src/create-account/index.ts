@@ -1,2 +1,3 @@
-export * from './functions';
-export * from './create-account.lambda';
+export * from "./functions";
+export * from "./interface";
+export * from "./create-account.lambda";

@@ -1,6 +1,9 @@
 const path = require('path');
 const slsw = require('serverless-webpack');
 const nodeExternals = require('webpack-node-externals');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+const plugins = [new CleanWebpackPlugin()];
 
 module.exports = {
   context: __dirname,
@@ -21,30 +24,15 @@ module.exports = {
   externals: [nodeExternals()],
   module: {
     rules: [
-      // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
       {
-        test: /\.(tsx?)$/,
-        loader: 'ts-loader',
-        exclude: [
-          [
-            path.resolve(__dirname, 'node_modules'),
-            path.resolve(__dirname, '.serverless'),
-            path.resolve(__dirname, '.webpack'),
-          ],
-        ],
+        test: /\.ts(x?)$/,
+        include: path.resolve(__dirname, 'src'),
+        loader: 'awesome-typescript-loader',
         options: {
-          transpileOnly: true,
-          experimentalWatchApi: true,
-        },
-      },
+          configFileName: 'tsconfig.app.json'
+        }
+      }
     ],
   },
-  plugins: [
-    // new ForkTsCheckerWebpackPlugin({
-    //   eslint: true,
-    //   eslintOptions: {
-    //     cache: true
-    //   }
-    // })
-  ],
+  plugins: plugins
 };

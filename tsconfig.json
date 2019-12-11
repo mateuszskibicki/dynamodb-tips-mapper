@@ -5,9 +5,9 @@
     "lib": ["es2015", "es2018"],
     "moduleResolution": "node",
     "baseUrl": "./",
-    "paths": {
-      "@app/*": ["./src/*"]
-    },
+    // "paths": {
+    //   "@app/*": ["./src/*"]
+    // },
     "sourceMap": true,
     "allowJs": true,
     "noImplicitAny": false,
@@ -23,8 +23,6 @@
     "outDir": "lib"
   },
   "include": ["./**/*.ts"],
-  "baseUrl": "./",
-
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",

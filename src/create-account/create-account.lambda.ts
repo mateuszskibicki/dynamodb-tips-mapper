@@ -6,8 +6,11 @@ import {
   response,
   Customer
 } from "../core";
-
-import { createAccount } from "./";
+import {
+  createAccount,
+  parseCreateAccountPayload,
+  CreateAccountPayload
+} from "../create-account";
 
 /**
  * Config for this endpoint
@@ -24,22 +27,29 @@ const config: LambdaConfig = { name: "Create Customer" };
  * @throws {Error}
  */
 
-export const createAccountLambda: Lambda = lambda(config, async event => {
-  const payload: any = event.body ? JSON.parse(event.body) : {};
+export const createAccountLambda: Lambda = lambda(
+  config,
+  async (event): Promise<LambdaResponse> => {
+    // parse/validate payload, if error Struct will throw StructError
+    const payload: CreateAccountPayload = parseCreateAccountPayload(
+      JSON.parse(event.body)
+    );
 
-  const customer: Customer = await createAccount(payload);
+    // create new account
+    const account: Customer = await createAccount(payload);
 
-  // Return new tokens, status 201, add optional headers for oauth2
-  return response(
-    {
-      customer
-    },
-    200,
-    {
-      headers: {
-        "Cache-Control": "no-store",
-        Pragma: "no-cache"
+    // Return response
+    return response(
+      {
+        account
+      },
+      200,
+      {
+        headers: {
+          "Cache-Control": "no-store",
+          Pragma: "no-cache"
+        }
       }
-    }
-  ) as LambdaResponse;
-});
+    );
+  }
+);
