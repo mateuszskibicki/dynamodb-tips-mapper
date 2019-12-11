@@ -1,6 +1,7 @@
 import { Superstruct, superstruct } from "superstruct";
-
 import { isNonEmptyString } from "./is-non-empty-string.function";
+import { isEmail } from "./is-email.function";
+import { isValidPassword } from "./is-valid-password.function";
 
 /**
  * Creata a custom struct factory with
@@ -9,6 +10,9 @@ import { isNonEmptyString } from "./is-non-empty-string.function";
  */
 export const struct: Superstruct = superstruct({
   types: {
-    nonemptystring: (val): boolean => isNonEmptyString(val)
+    nonemptystring: (val): boolean => isNonEmptyString(val),
+    email: (val): boolean => isEmail(val),
+    password: (val): boolean => isValidPassword(val),
+    truthy: (val): boolean => !!val
   }
 });
