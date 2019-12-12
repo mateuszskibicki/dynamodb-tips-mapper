@@ -4,7 +4,7 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "dev": "AWS_PROFILE=mateusz-private sls offline start",
+    "dev": "AWS_PROFILE=mateusz-private sls offline start --experimental-modules",
     "dev-skip": "AWS_PROFILE=mateusz-private sls offline start --skipCacheInvalidation",
     "test": "jest",
     "test:watch": "jest --watch",

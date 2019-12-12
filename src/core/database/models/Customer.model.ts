@@ -43,4 +43,12 @@ export class Customer extends BaseModel<Customer> {
    */
   @attribute()
   ifVip?: boolean;
+
+  /**
+   * Alias of ID
+   * @var {string}
+   */
+  public get id(): string {
+    return this.id;
+  }
 }
