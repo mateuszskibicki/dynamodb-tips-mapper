@@ -1,6 +1,6 @@
-import { createAccountLambda } from "../create-account";
-import { database } from "../core";
 import { APIGatewayProxyEvent } from "aws-lambda";
+import { createAccountLambda } from "@app/create-account";
+import { database } from "@app/core";
 
 describe("Lambda - create-account", () => {
   const request: any = Object.freeze({

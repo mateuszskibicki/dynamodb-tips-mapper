@@ -1,11 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs"
+    "module": "es2015"
   },
-  "include": [
-    "bin/**/*.test.*",
-    "lib/**/*.test.*",
-    "src/**/*.test.*"
-  ]
+  "include": ["bin/**/*.test.*", "lib/**/*.test.*", "src/**/*.test.*"]
 }

@@ -2,6 +2,7 @@ const path = require('path');
 const slsw = require('serverless-webpack');
 const nodeExternals = require('webpack-node-externals');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 
 const plugins = [new CleanWebpackPlugin()];
 
@@ -11,9 +12,10 @@ module.exports = {
   entry: slsw.lib.entries,
   devtool: slsw.lib.webpack.isLocal ? 'cheap-module-eval-source-map' : 'source-map',
   resolve: {
-    extensions: ['.mjs', '.json', '.ts'],
-    symlinks: false,
-    cacheWithContext: false,
+    extensions: [".ts", ".js"],
+    plugins: [
+      new TsConfigPathsPlugin()
+    ]
   },
   output: {
     libraryTarget: 'commonjs',
@@ -24,14 +26,22 @@ module.exports = {
   externals: [nodeExternals()],
   module: {
     rules: [
+      // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
       {
-        test: /\.ts(x?)$/,
-        include: path.resolve(__dirname, 'src'),
-        loader: 'awesome-typescript-loader',
+        test: /\.(tsx?)$/,
+        loader: 'ts-loader',
+        exclude: [
+          [
+            path.resolve(__dirname, 'node_modules'),
+            path.resolve(__dirname, '.serverless'),
+            path.resolve(__dirname, '.webpack'),
+          ],
+        ],
         options: {
-          configFileName: 'tsconfig.app.json'
-        }
-      }
+          transpileOnly: true,
+          experimentalWatchApi: true,
+        },
+      },
     ],
   },
   plugins: plugins

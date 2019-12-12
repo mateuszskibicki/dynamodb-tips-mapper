@@ -5,12 +5,12 @@ import {
   lambda,
   response,
   Customer
-} from "../core";
+} from "@app/core";
 import {
   createAccount,
   parseCreateAccountPayload,
   CreateAccountPayload
-} from "../create-account";
+} from "@app/create-account";
 
 /**
  * Config for this endpoint
