@@ -4,7 +4,7 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "dev": "AWS_PROFILE=mateusz-private sls offline start --experimental-modules",
+    "dev": "sls offline start --experimental-modules",
     "dev-skip": "AWS_PROFILE=mateusz-private sls offline start --skipCacheInvalidation",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -16,6 +16,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "dotenv": "^8.2.0",
     "path": "^0.12.7",
+    "serverless-dynamodb-local": "^0.2.39",
     "source-map-support": "^0.5.10",
     "superstruct": "^0.8.2",
     "uuid": "^3.3.3"
