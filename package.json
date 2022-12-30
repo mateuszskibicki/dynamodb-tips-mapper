@@ -16,7 +16,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "dotenv": "^8.2.0",
     "path": "^0.12.7",
-    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-dynamodb-local": "^1.0.2",
     "source-map-support": "^0.5.10",
     "superstruct": "^0.8.2",
     "uuid": "^3.3.3"
